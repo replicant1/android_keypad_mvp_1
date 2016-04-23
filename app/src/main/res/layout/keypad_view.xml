@@ -1,0 +1,114 @@
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#ccc"
+    android:columnCount="4"
+    android:rowCount="4"
+    android:useDefaultMargins="true">
+
+    <!-- ============================ -->
+    <!-- The keypad's LED display -->
+    <!-- ============================ -->
+
+    <TextView
+        android:id="@+id/keypad_display"
+        android:background="#0ef"
+        android:layout_height="80dp"
+        android:layout_gravity="fill_horizontal"
+        android:gravity="right|bottom"
+        android:layout_columnSpan="4"
+        android:textSize="54sp"/>
+
+    <!-- =============== -->
+    <!-- Row 1 of keypad -->
+    <!-- =============== -->
+
+    <!-- The "7" button -->
+
+    <Button
+        android:id="@+id/keypad_button_7"
+        style="@style/keypad_numeric_button"
+        android:text="7" />
+
+    <!-- The "8" button -->
+
+    <Button
+        android:id="@+id/keypad_button_8"
+        style="@style/keypad_numeric_button"
+        android:text="8" />
+
+    <!-- The "9" button -->
+
+    <Button
+        android:id="@+id/keypad_button_9"
+        style="@style/keypad_numeric_button"
+        android:text="9" />
+
+    <!-- The "CLR" button -->
+
+    <Button
+        android:id="@+id/keypad_button_clear"
+        style="@style/keypad_function_button"
+        android:text="CLR" />
+
+    <!-- =============== -->
+    <!-- Row 2 of keypad -->
+    <!-- =============== -->
+
+    <!-- The "4" button -->
+
+    <Button
+        android:id="@+id/keypad_button_4"
+        style="@style/keypad_numeric_button"
+        android:text="4" />
+
+    <!-- The "5" button -->
+
+    <Button
+        android:id="@+id/keypad_button_5"
+        style="@style/keypad_numeric_button"
+        android:text="5" />
+
+    <!-- The "6" button -->
+
+    <Button
+        android:id="@+id/keypad_button_6"
+        style="@style/keypad_numeric_button"
+        android:text="6" />
+
+    <!-- The "OK" button -->
+
+    <Button
+        android:id="@+id/keypad_button_ok"
+        style="@style/keypad_function_button"
+        android:layout_columnSpan="1"
+        android:layout_rowSpan="2"
+        android:text="OK" />
+
+    <!-- =============== -->
+    <!-- Row 3 of keypad -->
+    <!-- =============== -->
+
+    <!-- The "1" button -->
+
+    <Button
+        android:id="@+id/keypad_button_1"
+        style="@style/keypad_numeric_button"
+        android:text="1" />
+
+    <!-- The "2" button -->
+
+    <Button
+        android:id="@+id/keypad_button_2"
+        style="@style/keypad_numeric_button"
+        android:text="2" />
+
+    <!-- The "3" button -->
+
+    <Button
+        android:id="@+id/keypad_button_3"
+        style="@style/keypad_numeric_button"
+        android:text="3" />
+
+
+</GridLayout>
