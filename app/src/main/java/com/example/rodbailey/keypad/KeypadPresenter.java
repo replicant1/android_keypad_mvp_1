@@ -1,32 +1,47 @@
 package com.example.rodbailey.keypad;
 
-import android.util.Log;
+
+import static com.example.rodbailey.keypad.Log.log;
 
 /**
  *
  */
 public class KeypadPresenter implements IKeypadPresenter {
     private static final String TAG = KeypadPresenter.class.getSimpleName();
-    private final KeypadModel keypadModel;
+    private final IKeypadModel keypadModel;
+    private final IKeypadView keypadView;
 
-    public KeypadPresenter() {
-        keypadModel = new KeypadModel();
+    /**
+     * You have to pass in a model, otherwise how can you tell if the
+     * presenter is working or not? You need to have access to the model
+     * to tell if the presenter is modifying it correctly, which precludes
+     * creating it privately.
+     *
+     * @param model
+     * @param view
+     */
+    public KeypadPresenter(IKeypadView view, IKeypadModel model) {
+        keypadModel = model;
+        keypadView = view;
     }
 
     @Override
     public void keyPressed(KeypadKey key) {
-        Log.d(TAG, "keyPressed: " + key);
+        log(TAG, "keyPressed: " + key);
+
+        // Pass user interaction onto the model
         if (key.isNumeric()) {
             char charToRegister = numericKeyToChar(key);
             keypadModel.appendToRegister(charToRegister);
-        }
-        else if (key == KeypadKey.KEY_CLEAR) {
+        } else if (key == KeypadKey.KEY_CLEAR) {
             keypadModel.clearRegister();
-        }
-        else if (key == KeypadKey.KEY_OK) {
+        } else if (key == KeypadKey.KEY_OK) {
             // Do what?
         }
 
+        // Pass new model contents back up to view
+        String newDisplay = keypadModel.getRegister();
+        keypadView.setDisplay(newDisplay);
     }
 
     private char numericKeyToChar(KeypadKey key) {

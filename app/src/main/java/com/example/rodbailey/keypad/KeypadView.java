@@ -41,7 +41,7 @@ public class KeypadView extends Fragment implements IKeypadView {
      * Fragments must have a public empty constructor
      */
     public KeypadView() {
-        keypadPresenter = new KeypadPresenter();
+        keypadPresenter = new KeypadPresenter(this, new KeypadModel());
     }
 
     /**
