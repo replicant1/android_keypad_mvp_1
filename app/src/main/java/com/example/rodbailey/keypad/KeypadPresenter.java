@@ -33,15 +33,15 @@ public class KeypadPresenter implements IKeypadPresenter {
         if (key.isNumeric()) {
             char charToRegister = numericKeyToChar(key);
             keypadModel.appendToRegister(charToRegister);
+            // Pass new model contents back up to view
+            String newDisplay = keypadModel.getRegister();
+            keypadView.setDisplay(newDisplay);
         } else if (key == KeypadKey.KEY_CLEAR) {
             keypadModel.clearRegister();
+            keypadView.clearDisplay();
         } else if (key == KeypadKey.KEY_OK) {
             // Do what?
         }
-
-        // Pass new model contents back up to view
-        String newDisplay = keypadModel.getRegister();
-        keypadView.setDisplay(newDisplay);
     }
 
     private char numericKeyToChar(KeypadKey key) {
