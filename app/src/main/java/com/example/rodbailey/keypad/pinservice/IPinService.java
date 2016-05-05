@@ -1,7 +1,7 @@
 package com.example.rodbailey.keypad.pinservice;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Set;
 
 /**
  * Provides a facade which higher levels use to access PIN number information.
@@ -12,7 +12,7 @@ public interface IPinService {
      * @return All currently defined PIN records. May be empty but is never null.
      * @throws IOException
      */
-    List<Pin> getAllPins() throws IOException;
+    Set<Pin> getAllPins() throws IOException;
 
     /**
      * @param numericCode Numeric code of the PIN record to be retrieved.
