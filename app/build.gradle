@@ -1,7 +1,9 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
+    // Below I have put back in the brackets that Groovy makes optional
+    // just to convince myself I know something about Groovy.
+    compileSdkVersion(23)
     buildToolsVersion "23.0.3"
 
     defaultConfig {
