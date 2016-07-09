@@ -24,5 +24,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Timber.plant(new ReleaseTree());
         }
+
+        Timber.i("MainActivity has been created");
     }
 }

@@ -45,7 +45,7 @@ public class CalculatorPresenter implements ICalculatorPresenter {
         } else if (key == KeypadKey.KEY_CLEAR) {
             keypadModel.clearRegister();
             keypadView.clearDisplay();
-        } else if (key == KeypadKey.KEY_OK) {
+        } else if (key == KeypadKey.KEY_EQUALS) {
             // Do what?
         }
     }

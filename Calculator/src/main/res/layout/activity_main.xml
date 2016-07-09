@@ -11,7 +11,7 @@
 
     <fragment
         android:id="@+id/calculator_bob"
-        android:name="com.example.rodbailey.keypad.CalculatorView"
+        android:name="com.example.rodbailey.keypad.CalculatorFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
