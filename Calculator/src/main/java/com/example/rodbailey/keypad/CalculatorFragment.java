@@ -8,24 +8,24 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.rodbailey.keypad.util.Log;
+
 import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import hugo.weaving.DebugLog;
+import timber.log.Timber;
 
 import static com.example.rodbailey.keypad.KeypadKey.KEY_1;
 import static com.example.rodbailey.keypad.KeypadKey.KEY_2;
 import static com.example.rodbailey.keypad.KeypadKey.KEY_3;
 import static com.example.rodbailey.keypad.KeypadKey.KEY_4;
-import static com.example.rodbailey.keypad.KeypadKey.KEY_5;
-import static com.example.rodbailey.keypad.KeypadKey.KEY_6;
-import static com.example.rodbailey.keypad.KeypadKey.KEY_7;
-import static com.example.rodbailey.keypad.KeypadKey.KEY_8;
-import static com.example.rodbailey.keypad.KeypadKey.KEY_9;
-import static com.example.rodbailey.keypad.KeypadKey.KEY_CLEAR;
+import static com.example.rodbailey.keypad.KeypadKey.KEY_CLEAR_ALL;
 import static com.example.rodbailey.keypad.KeypadKey.KEY_EQUALS;
+import static com.example.rodbailey.keypad.KeypadKey.KEY_MINUS;
+import static com.example.rodbailey.keypad.KeypadKey.KEY_PLUS;
 
 
 /**
@@ -47,7 +47,7 @@ public class CalculatorFragment extends Fragment implements ICalculatorView {
      * The output display at the top of the keypad
      */
     @BindView(R.id.keypad_display)
-    private TextView display;
+    TextView display;
 
     /**
      * Fragments must have a public empty constructor
@@ -68,8 +68,13 @@ public class CalculatorFragment extends Fragment implements ICalculatorView {
     }
 
     @Override
-    public void flashDisplay() {
+    public void clearDisplay() {
 
+    }
+
+    @Override
+    public void flashDisplay() {
+        Timber.e("flashDisplay() not implemented yet");
     }
 
     @Override
@@ -91,13 +96,10 @@ public class CalculatorFragment extends Fragment implements ICalculatorView {
         keys.put((Button) fragmentView.findViewById(R.id.keypad_button_2), KEY_2);
         keys.put((Button) fragmentView.findViewById(R.id.keypad_button_3), KEY_3);
         keys.put((Button) fragmentView.findViewById(R.id.keypad_button_4), KEY_4);
-        keys.put((Button) fragmentView.findViewById(R.id.keypad_button_5), KEY_5);
-        keys.put((Button) fragmentView.findViewById(R.id.keypad_button_6), KEY_6);
-        keys.put((Button) fragmentView.findViewById(R.id.keypad_button_7), KEY_7);
-        keys.put((Button) fragmentView.findViewById(R.id.keypad_button_8), KEY_8);
-        keys.put((Button) fragmentView.findViewById(R.id.keypad_button_9), KEY_9);
-        keys.put((Button) fragmentView.findViewById(R.id.keypad_button_clear), KEY_CLEAR);
-        keys.put((Button) fragmentView.findViewById(R.id.keypad_button_ok), KEY_EQUALS);
+        keys.put((Button) fragmentView.findViewById(R.id.keypad_button_plus), KEY_PLUS);
+        keys.put((Button) fragmentView.findViewById(R.id.keypad_button_minus), KEY_MINUS);
+        keys.put((Button) fragmentView.findViewById(R.id.keypad_button_clear), KEY_CLEAR_ALL);
+        keys.put((Button) fragmentView.findViewById(R.id.keypad_button_equals), KEY_EQUALS);
 
         for (Button button : keys.keySet()) {
             button.setOnClickListener(keypadClickListener);
@@ -108,8 +110,8 @@ public class CalculatorFragment extends Fragment implements ICalculatorView {
 
     @DebugLog
     @Override
-    public void setDisplay(String display) {
-        this.display.setText(display);
+    public void setDisplay(IntegerCalculatorValue display) {
+        this.display.setText(display.getValueAsString());
     }
 
     private class KeypadClickListener implements View.OnClickListener {

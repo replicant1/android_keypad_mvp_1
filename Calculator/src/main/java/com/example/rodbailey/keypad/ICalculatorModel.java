@@ -14,57 +14,52 @@ package com.example.rodbailey.keypad;
  * When a property changes value, an event is broadcast on the event bus. The following property change events
  * are broadcast:
  * <ul>
- *     <li>RegisterPropertyChangedEvent</li>
- *     <li>MemoryPropertyChangedEvent</li>
+ * <li>RegisterPropertyChangedEvent</li>
+ * <li>MemoryPropertyChangedEvent</li>
  * </ul>
  */
 public interface ICalculatorModel {
 
     /**
-     * Sets the current register's value to zero. Equivalent to calling #setRegister(0)
+     * Sets both register and model values to zero. Also cancels any pending operations.
      */
-    public void clearRegister();
+    public void clearAll();
 
     /**
      * @return The current value of the calculator's memory. This is the off-screen, running
      * tally and the implied second argument of all binary operations.
      */
-    public long getMemory();
+    public IntegerCalculatorValue getMemory();
 
     /**
      * @return The current register value.
      */
-    public long getRegister();
+    public IntegerCalculatorValue getRegister();
 
     /**
      * Performs the mathematical operation: register = memory + register
      */
-    public void performOperationAdd();
+    public void performOperationAdd() throws CalculatorOverflowException;
 
     /**
-     * Performs the mathematical operation: register = round(memory / register).
+     * Executes any pending operation.
      */
-    public void performOperationDivide();
-
-    /**
-     * Performs the mathematical operation: register = memory * register
-     */
-    public void performOperationMultiply();
+    public void performOperationEqual() throws CalculatorOverflowException, CalculatorUnderflowException;
 
     /**
      * Performs the mathematical operation: register = memory - register
      */
-    public void performOperationSubtract();
+    public void performOperationSubtract() throws CalculatorOverflowException, CalculatorUnderflowException;
 
     /**
      * @param value The new memory value
      */
-    public void setMemory(long value);
+    public void setMemory(IntegerCalculatorValue value);
 
     /**
      * Sets the calculator's register to have the given value.
      *
      * @param value New value of register. Zero or greater.
      */
-    public void setRegister(long value);
+    public void setRegister(IntegerCalculatorValue value);
 }

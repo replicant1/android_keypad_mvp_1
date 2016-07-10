@@ -37,7 +37,7 @@ public class KeypadModelTest {
 
     @Test
     public void clearEmptyModel() throws Exception {
-        model.clearRegister();
+        model.clearAll();
         assertEquals(model.getRegister(), "");
     }
 
@@ -45,7 +45,7 @@ public class KeypadModelTest {
     public void clearNonEmptyModel() throws Exception {
         model.appendToRegister('1');
         model.appendToRegister('2');
-        model.clearRegister();
+        model.clearAll();
         assertEquals(model.getRegister(), "");
     }
 }

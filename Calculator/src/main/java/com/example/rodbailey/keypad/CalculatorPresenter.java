@@ -37,50 +37,51 @@ public class CalculatorPresenter implements ICalculatorPresenter {
 
         // Pass user interaction onto the model
         if (key.isNumeric()) {
-            char charToRegister = numericKeyToChar(key);
-            keypadModel.appendToRegister(charToRegister);
+            long toLong = numericKeyToLong(key);
+            Timber.d("toLong=%d", toLong);
+
+            IntegerCalculatorValue register = keypadModel.getRegister();
+            Timber.d("register=%s", register);
+
+            register.appendDigit(toLong);
+
+            Timber.d("register afert append=%s", register);
+
+            keypadModel.setRegister(register);
+
             // Pass new model contents back up to view
-            String newDisplay = keypadModel.getRegister();
+            IntegerCalculatorValue newDisplay = keypadModel.getRegister();
+            Timber.d("register value retrieved from keypadModel is %s", newDisplay);
+
             keypadView.setDisplay(newDisplay);
-        } else if (key == KeypadKey.KEY_CLEAR) {
-            keypadModel.clearRegister();
-            keypadView.clearDisplay();
+        } else if (key == KeypadKey.KEY_CLEAR_ALL) {
+            keypadModel.clearAll();
+
+            // Pass new model contents back up to view
+            IntegerCalculatorValue newDisplay = keypadModel.getRegister();
+            keypadView.setDisplay(newDisplay);
         } else if (key == KeypadKey.KEY_EQUALS) {
             // Do what?
         }
     }
 
-    private char numericKeyToChar(KeypadKey key) {
-        char result = ' ';
+    private long numericKeyToLong(KeypadKey key) {
+        long result = 0L;
 
         switch (key) {
             case KEY_1:
-                result = '1';
+                result = 1;
                 break;
             case KEY_2:
-                result = '2';
+                result = 2;
                 break;
             case KEY_3:
-                result = '3';
+                result = 3;
                 break;
             case KEY_4:
-                result = '4';
+                result = 4;
                 break;
-            case KEY_5:
-                result = '5';
-                break;
-            case KEY_6:
-                result = '6';
-                break;
-            case KEY_7:
-                result = '7';
-                break;
-            case KEY_8:
-                result = '8';
-                break;
-            case KEY_9:
-                result = '9';
-                break;
+
         }
 
         return result;

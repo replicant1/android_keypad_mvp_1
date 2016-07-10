@@ -32,8 +32,8 @@ public class KeypadPresenterTest {
         ICalculatorPresenter presenter = new CalculatorPresenter(mockView, mockModel);
         presenter.keyPressed(KeypadKey.KEY_CLEAR);
 
-        // Verify that presenter called mockModel.clearRegister()
-        Mockito.verify(mockModel).clearRegister();
+        // Verify that presenter called mockModel.clearAll()
+        Mockito.verify(mockModel).clearAll();
 
         // Verify that presenter called mockView.clearDisplay();
         Mockito.verify(mockView).clearDisplay();

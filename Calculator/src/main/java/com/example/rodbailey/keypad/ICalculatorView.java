@@ -16,7 +16,9 @@ public interface ICalculatorView {
     /**
      * Displays the given string in the keypad's display area
      *
-     * @param display The string to literally display.
+     * @param display The string to literally display. e.g. "25.4302", "-23.12"
      */
-    public void setDisplay(String display);
+    public void setDisplay(IntegerCalculatorValue display);
+
+    public void clearDisplay();
 }

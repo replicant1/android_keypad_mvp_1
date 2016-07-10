@@ -5,28 +5,55 @@ import hugo.weaving.DebugLog;
 import static com.example.rodbailey.keypad.util.Log.log;
 
 /**
- * The keypad itself.
+ * The state and business logic of the calculator.
+ *
+ * @see ICalculatorModel
  */
 public class CalculatorModel implements ICalculatorModel {
 
     private static final String TAG = CalculatorModel.class.getSimpleName();
 
-    private StringBuffer register = new StringBuffer();
+    private IntegerCalculatorValue register = new IntegerCalculatorValue(0);
 
-    public String getRegister() {
-        return register.toString();
-    }
+    private IntegerCalculatorValue memory = new IntegerCalculatorValue(0);
 
     @DebugLog
-    public void appendToRegister(char value) {
-        log(TAG, "append to register value: " + value);
-        register.append(value);
-        log(TAG, "new register value: \"" + register.toString() + "\"");
-    }
-
-    @DebugLog
-    public void clearRegister() {
-        register.setLength(0);
+    public void clearAll() {
+        register.clear();
         log(TAG, "register cleared. new register value: \"" + register.toString() + "\"");
+    }
+
+    @Override
+    public IntegerCalculatorValue getMemory() {
+        return memory;
+    }
+
+    public IntegerCalculatorValue getRegister() {
+        return register;
+    }
+
+    @Override
+    public void performOperationAdd() {
+
+    }
+
+    @Override
+    public void performOperationEqual() throws CalculatorOverflowException, CalculatorUnderflowException {
+
+    }
+
+    @Override
+    public void performOperationSubtract() {
+
+    }
+
+    @Override
+    public void setMemory(IntegerCalculatorValue value) {
+        memory = new IntegerCalculatorValue(value);
+    }
+
+    @Override
+    public void setRegister(IntegerCalculatorValue value) {
+        register = new IntegerCalculatorValue(value);
     }
 }
