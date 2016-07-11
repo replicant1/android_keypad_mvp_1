@@ -13,11 +13,21 @@ import org.valid4j.Assertive;
  */
 public class IntegerCalculatorValue {
 
+    /** The lowest value an IntegerCalculatorValue can have (inclusive) */
     public static final long VALUE_LOWEST = -9999;
 
+    /** The highest value an IntegerCalculatorValue can have (exclusive) */
     public static final long VALUE_HIGHEST = 9999;
 
     private long value;
+
+    /**
+     * Default constructor. Constructs an IntegerCalculatorValue with a zero value.
+     */
+    public IntegerCalculatorValue() {
+        this.value = 0L;
+        ensure(getValue() == 0L);
+    }
 
     /**
      * Constructs an IntegerCalculatorValue
@@ -30,26 +40,48 @@ public class IntegerCalculatorValue {
         this.value = value;
     }
 
+    /**
+     * Constructs an IntegerCalculatorValue
+     *
+     * @param copyMe
+     */
     public IntegerCalculatorValue(IntegerCalculatorValue copyMe) {
         require(copyMe != null);
         this.value = copyMe.getValue();
     }
 
+
+    /**
+     * Appends the given digit to the right end of the current value
+     *
+     * @param digit Must in [0,9] e.g. "123" -> "1230", "20" ->
+     *              200", "0" -> "9"
+     */
     public void appendDigit(long digit) {
+        require(digit >= 0);
+        require(digit <= 9);
         value = value * 10 + digit;
     }
 
+    /**
+     * Sets the current value to zero.
+     */
     public void clear() {
         value = 0L;
         ensure(getValue() == 0L);
     }
 
+    /** @return The current value as a long. Will be in [LOWEST, HIGHEST] */
     public long getValue() {
         ensure(value >= VALUE_LOWEST);
         ensure(value <= VALUE_HIGHEST);
         return value;
     }
 
+    /**
+     *
+     * @return The current value as String e.g. "1", "10"
+     */
     public String getValueAsString() {
         return Long.toString(value);
     }
